@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill Analysis System</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, blue, purple);
+            margin: 0;
+            color: white;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        input, select, button {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+            border-radius: 6px;
+            border: none;
+        }
+
+        button {
+            background: blue;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkblue;
+        }
+
+        #output {
+            margin-top: 15px;
+            text-align: left;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🚀 Skill Analysis System</h2>
+
+    <input id="skill" placeholder="Enter skill">
+
+    <select id="level">
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+    </select>
+
+    <button onclick="addSkill()">Add Skill</button>
+    <button onclick="viewSkills()">View Skills</button>
+    <button onclick="getRec()">Get Recommendation</button>
+    <button onclick="deleteSkill()">Delete Skill</button>
+    <button onclick="clearAll()">Clear</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+async function addSkill(){
+    let skill = document.getElementById("skill").value;
+    let level = document.getElementById("level").value;
+
+    let res = await fetch("/add", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({skill, level})
+    });
+
+    let data = await res.json();
+    document.getElementById("output").innerHTML = data.msg;
+}
+
+async function viewSkills(){
+    let res = await fetch("/view");
+    let data = await res.json();
+
+    let text = "<b>📌 Skills:</b><br>";
+    for(let s in data){
+        text += s + " → " + data[s] + "<br>";
+    }
+
+    document.getElementById("output").innerHTML = text;
+}
+
+async function getRec(){
+    document.getElementById("output").innerHTML = "⏳ Processing...";
+
+    let res = await fetch("/recommend");
+    let data = await res.json();
+
+    if(data.msg){
+        document.getElementById("output").innerHTML = data.msg;
+        return;
+    }
+
+    let text = "📊 Score: " + data.score + "<br>";
+    text += "Level: " + data.level + "<br><br>";
+
+    text += "<b>💼 Roles:</b><br>";
+    data.roles.forEach(r => text += r + "<br>");
+
+    if(data.gaps.length > 0){
+        text += "<br><b>⚠️ Skill Gaps:</b><br>";
+        data.gaps.forEach(g => text += g + "<br>");
+    }
+
+    document.getElementById("output").innerHTML = text;
+}
+
+async function deleteSkill(){
+    let skill = document.getElementById("skill").value;
+
+    let res = await fetch("/delete", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({skill})
+    });
+
+    let data = await res.json();
+    document.getElementById("output").innerHTML = data.msg;
+}
+
+function clearAll(){
+    document.getElementById("skill").value = "";
+    document.getElementById("level").value = "Beginner";
+    document.getElementById("output").innerHTML = "";
+}
+</script>
+
+</body>
+</html>
