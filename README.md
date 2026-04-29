@@ -1,36 +1,25 @@
 # skill-analysis-system
 
 
-Description
+# Skill Analysis & Career Recommendation System
 
-This project is a web-based application that analyzes user skills based on input data and provides meaningful insights. The system processes user responses and evaluates skill levels, presenting the results in a clear and structured format.
+A web-based application that analyzes user skills and suggests suitable career paths.
 
-Tech Stack
+## 🚀 Features
+- Add, update, and delete skills
+- Skill-based scoring system
+- Career recommendations based on user profile
+- Identifies skill gaps
 
+## 🛠️ Tech Stack
 - Python (Flask)
-- HTML
-- CSS
+- HTML, CSS
+- JavaScript
 
-Features
+## 📸 Screenshots
+(Add images here)
 
-- User input-based skill evaluation
-- Dynamic result generation
-- Clean and simple user interface
-- Fast and efficient processing
-
-How to Run
-
-1. Clone the repository
-2. Install dependencies:
-   pip install flask
-3. Run the application:
-   python app.py
-4. Open in browser:
-   http://127.0.0.1:5000/
-
-Project Structure
-
-skill-analysis-app/
-│── app.py
-│── templates/
-│── static/
+## ▶️ How to Run
+1. Clone the repo
+2. Install requirements
+3. Run app.py
