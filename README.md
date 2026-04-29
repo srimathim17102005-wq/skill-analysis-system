@@ -14,7 +14,8 @@ A web-based application that analyzes user skills and suggests suitable career p
 - JavaScript
 
 ## 📸 Screenshots
-(Add images here)
+<img width="1366" height="664" alt="Screenshot 2026-04-29 at 12-29-45 Skill Analysis System" src="https://github.com/user-attachments/assets/315f750d-2466-4f5a-8b82-4734a7ce2357" />
+
 
 ## ▶️ How to Run
 1. Clone the repo
