@@ -1,6 +1,3 @@
-# skill-analysis-system
-
-
 # Skill Analysis & Career Recommendation System
 
 A web-based application that analyzes user skills and suggests suitable career paths.
