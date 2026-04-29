@@ -21,3 +21,8 @@ A web-based application that analyzes user skills and suggests suitable career p
 1. Clone the repo
 2. Install requirements
 3. Run app.py
+
+## 📌 Future Improvements
+- Add more career roles
+- Improve UI with animations
+- Integrate more advanced recommendation logic
